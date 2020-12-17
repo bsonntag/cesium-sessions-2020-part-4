@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>React Frameworks</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/seegno.css" id="theme" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>How to make React apps</h1>
+        </section>
+
+        <section>
+          <h2>React frameworks</h2>
+          <ol>
+            <li class="fragment">Next JS</li>
+            <li class="fragment">Styled Components</li>
+            <li class="fragment">React Query</li>
+            <li class="fragment">Others</li>
+          </ol>
+        </section>
+
+        <section>
+          <section>
+            <h3>Next JS</h3>
+            <a href="https://nextjs.org/" target="_blank">Documentation</a>
+          </section>
+          <section>
+            <a
+              href="https://www.npmjs.com/package/create-next-app"
+              target="_blank"
+              ><code>create-next-app</code></a
+            >
+            <pre><code class="bash" data-trim>
+npx create-next-app --example with-styled-components my-app
+						</code></pre>
+          </section>
+          <section>
+            <ul>
+              <li>
+                Add
+                <a
+                  href="https://www.npmjs.com/package/eslint-config-react-app/v/4.0.1"
+                  target="_blank"
+                  >eslint</a
+                >
+              </li>
+              <li>
+                Add <a href="https://prettier.io/" target="_blank">prettier</a>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h4>Pages</h4>
+            <p>Each JS file in the <code>/pages</code> folder is a page.</p>
+            <ul class="fragment">
+              <li><code>pages/index.js</code></li>
+              <li><code>pages/about.js</code></li>
+              <li><code>pages/account/settings.js</code></li>
+            </ul>
+          </section>
+          <section>
+            <h4>Pre-rendering modes</h4>
+            <ul>
+              <li>Static generation</li>
+              <li>Server-side rendering</li>
+            </ul>
+          </section>
+          <section>
+            <h4>Static generation</h4>
+            <p>HTML is generated at <b>build time</b></p>
+            <p class="fragment">
+              Good for websites with static data, or with data that doesn't
+              change often.
+            </p>
+          </section>
+          <section>
+            <h4>Server-side rendering</h4>
+            <p>HTML is generated on <b>each request</b></p>
+            <p class="fragment">
+              Good for websites with data that changes often, or web apps with
+              authentication.
+            </p>
+          </section>
+          <section>
+            <h4>Data fetching</h4>
+            <ul>
+              <li><code>getStaticProps</code></li>
+              <li><code>getServerSideProps</code></li>
+            </ul>
+          </section>
+          <section>
+            <h4>Dynamic routes</h4>
+            <ul>
+              <li><code>pages/users/[id].js</code></li>
+              <li><code>pages/[username]/posts.js</code></li>
+            </ul>
+            <p class="fragment">
+              Whatever is in <code>[]</code> will be passed to the data-fetching
+              functions.
+            </p>
+            <p class="fragment">
+              For static generation, <code>getStaticPaths</code> is also
+              necessary.
+            </p>
+          </section>
+          <section>
+            <h4>Navigation</h4>
+            <pre><code data-trim>
+import Link from 'next/link';
+            </code></pre>
+            <pre class="fragment"><code data-trim>
+import { useRouter } from 'next/router';
+
+function SignIn() {
+  const router = useRouter();
+
+  function handleSignInSuccess() {
+    router.push('/dashboard');
+  }
+  // ...
+}
+            </code></pre>
+          </section>
+          <section>
+            <h4>Static files</h4>
+            <p>
+              Files in the <code>/public</code> folder will be served as-is.
+              <br />
+              These files can be accessed in your code starting from the base
+              URL (<code>/</code>).
+            </p>
+          </section>
+          <section>
+            <h4>Image optimization</h4>
+            <pre><code data-trim><script type="text/template">
+import Image from 'next/image';
+
+function Avatar() {
+  return (
+    <Image src="/me.png" alt="me" width="64" height="64" />
+  );
+}
+            </script></code></pre>
+          </section>
+          <section>
+            <h4>Meta-tags</h4>
+            <pre><code data-trim><script type="text/template">
+import Head from 'next/head';
+
+function HomePage() {
+  return (
+    <Head>
+      <title>My page title</title>
+      <meta
+        name="description"
+        content="My page's description."
+      />
+    </Head>
+  );
+}
+            </script></code></pre>
+          </section>
+          <section>
+            <h4>Internationalized routing</h4>
+            <pre><code class="javascript" data-trim>
+// next.config.js
+module.exports = {
+  i18n: {
+    locales: ['en', 'pt'],
+    defaultLocale: 'en'
+  }
+};
+
+            </code></pre>
+          </section>
+          <section>
+            <h4>Internationalized routing</h4>
+            <pre><code class="javascript" data-trim>
+function AboutPage() {
+  const { locale } = useRouter();
+  //...
+}
+            </code></pre>
+            <ul>
+              <li>/about</li>
+              <li>/en/about</li>
+              <li>/pt/about</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <h3>Styled Components</h3>
+          <p>A CSS-in-JS library</p>
+          <a href="https://styled-components.com/" target="_blank"
+            >Documentation</a
+          >
+        </section>
+
+        <section>
+          <h3>React Query</h3>
+          <p>A data-fetching library</p>
+          <a href="https://react-query.tanstack.com/" target="_blank"
+            >Documentation</a
+          >
+        </section>
+
+        <section>
+          <section>
+            <h3>Others</h3>
+          </section>
+          <section>
+            <h4>Frameworks</h4>
+            <ul>
+              <li>
+                <a href="https://create-react-app.dev/" target="_blank"
+                  >Create React App</a
+                >
+              </li>
+              <li>
+                <a href="https://www.gatsbyjs.com/" target="_blank">Gatsby</a>
+              </li>
+              <li>
+                <a href="https://reactnative.dev/" target="_blank"
+                  >React Native</a
+                >
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h4>Data management</h4>
+            <ul>
+              <li><a href="https://redux.js.org/" target="_blank">Redux</a></li>
+              <li>
+                <a href="https://mobx.js.org/README.html" target="_blank"
+                  >MobX</a
+                >
+              </li>
+              <li>
+                <a href="https://xstate.js.org/docs/" target="_blank">XState</a>
+              </li>
+              <li>
+                <a href="https://recoiljs.org/" target="_blank">Recoil</a>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h4>Animation</h4>
+            <ul>
+              <li>
+                <a
+                  href="https://reactcommunity.org/react-transition-group/"
+                  target="_blank"
+                  >React Transition Group</a
+                >
+              </li>
+              <li>
+                <a href="https://www.framer.com/motion/" target="_blank"
+                  >Framer Motion</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://alain.xyz/libraries/react-anime"
+                  target="_blank"
+                  >React Anime</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/chenglou/react-motion"
+                  target="_blank"
+                  >React Motion</a
+                >
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h4>Carousels</h4>
+            <ul>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/nuka-carousel"
+                  target="_blank"
+                  >nuka-carousel</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.npmjs.com/package/react-slick"
+                  target="_blank"
+                  >React Slick</a
+                >
+              </li>
+              <li>
+                <a href="https://swiperjs.com/react/" target="_blank">Swiper</a>
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <h3>Questions?</h3>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
